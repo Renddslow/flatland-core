@@ -1,6 +1,6 @@
 {
   "name": "@flatland/core",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "All the core methods required to run a front-end Flatland application",
   "main": "main.js",
   "author": "Flatland Church",
