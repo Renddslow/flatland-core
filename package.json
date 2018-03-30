@@ -3,12 +3,10 @@
   "version": "1.0.0",
   "description": "All the core methods required to run a front-end Flatland application",
   "main": "main.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
   "author": "Flatland Church",
   "license": "MIT",
   "dependencies": {
     "got": "^8.3.0"
-  }
+  },
+	"repository": "https://github.com/Renddslow/flatland-core.git"
 }
