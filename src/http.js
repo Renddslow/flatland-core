@@ -14,20 +14,24 @@ class NotFoundError extends Error {
 	}
 }
 
-const handleResponse = res => {
-	if (res.statusCode === 404) {
+const handleError = err => {
+	if (err.statusCode === 404) {
 		throw new NotFoundError();
 	}
-	return res;
+	return err;
 }
 
 module.exports = version => ({
-	get: (method, query) => {
+	get: (method, query = {}) => {
 		const url = baseUrls[version] + method;
+		const queryObj = query;
+		queryObj.key = 'pk_e6afff4e5ad186e9ce389cc21c225';
 		return got(url, {
 			method: 'GET',
-			query: { key: 'pk_e6afff4e5ad186e9ce389cc21c225', ...query }
-		}).then(handleResponse);
+			query: queryObj
+		})
+			.then(res => JSON.parse(res.body))
+			.catch(handleError);
 	},
 	post: (method, data) => {
 		const url = baseUrls[version] + method;
@@ -35,6 +39,8 @@ module.exports = version => ({
 			method: 'POST',
 			body: data,
 			query: { key: '202f1c42-7054-46ee-8ca2-ddc85f9c789b' }
-		}).then(handleResponse);
+		})
+			.then(res => JSON.parse(res.body))
+			.catch(handleError);
 	}
 });
